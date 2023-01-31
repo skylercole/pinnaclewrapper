@@ -135,6 +135,11 @@ namespace PinnacleWrapper
             return PostJsonAsync<PlaceBetResponse>("v1/bets/place", placeBetRequest);
         }
 
+        public Task<PlaceBetResponse> PlaceSpecialBet(PlaceSpecialBets placeBetRequest)
+        {
+            return PostJsonAsync<PlaceBetResponse>("v1/bets/special", placeBetRequest);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -236,6 +241,21 @@ namespace PinnacleWrapper
             sb.Append($"&toCurrencyCode={CurrencyCode}");
 
             return GetJsonAsync<GetOddsResponse>(sb.ToString());
+        }
+
+        public Task<GetSpecialOddsResponse> GetSpecialOdds(GetOddsRequest request)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append($"{request.ApiVersion}/odds/special?sportId={request.SportId}");
+
+            if (request.LeagueIds != null && request.LeagueIds.Any())
+                sb.Append($"&leagueIds={string.Join(",", request.LeagueIds)}");
+
+            sb.Append($"&oddsFormat={OddsFormat}");
+            sb.Append($"&toCurrencyCode={CurrencyCode}");
+
+            return GetJsonAsync<GetSpecialOddsResponse>(sb.ToString());
         }
     }
 }

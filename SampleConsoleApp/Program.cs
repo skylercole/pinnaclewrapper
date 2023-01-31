@@ -49,7 +49,7 @@ namespace SampleConsoleApp
 
                     var fixtures = await api.GetFixtures(new GetFixturesRequest(SampleSportId, lastFixture));
 
-                    var lines = await api.GetOdds(new GetOddsRequest(fixtures.SportId, fixtures.Leagues.Select(i => i.Id).ToList(), lastLine, false));
+                    var lines = await api.GetOdds(new GetOddsRequest(fixtures.SportId, fixtures.Leagues.Select(i => i.Id).ToList(), lastLine));
 
                     var leagues = await api.GetLeagues(SampleSportId);
 
@@ -97,13 +97,13 @@ namespace SampleConsoleApp
                 LineId = randomEvent.Periods.First(p => p.Number == fullMatchPeriodNumber).LineId,
                 PeriodNumber = fullMatchPeriodNumber,
                 TeamType = TeamType.Team1,
-                Stake = 25,
+                Stake = 1,
                 WinRiskType = WinRiskType.Risk,
                 OddsFormat = OddsFormat.DECIMAL,
                 SportId = SampleSportId,
                 UniqueRequestId = Guid.NewGuid(),
                 EventId =  randomEvent.Id,
-                BetType = BetType.MoneyLine,
+                BetType = BetType.Moneyline,
             };
 
             return await api.PlaceBet(request);
