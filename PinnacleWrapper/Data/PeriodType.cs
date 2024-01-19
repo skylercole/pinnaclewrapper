@@ -7,7 +7,7 @@ namespace PinnacleWrapper.Data
     public class PeriodType
     {
         [JsonProperty(PropertyName = "lineId")]
-        public int LineId { get; set; }
+        public long LineId { get; set; }
 
         [JsonProperty(PropertyName = "number")]
         public int Number { get; set; }

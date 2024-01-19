@@ -46,7 +46,7 @@ namespace PinnacleWrapper.Data
         public SideType? SideType;
 
         [JsonProperty(PropertyName = "lineId")]
-        public int LineId;
+        public long LineId;
 
         [JsonProperty(PropertyName = "altLineId")] // Alternate line identification. Not required
         public long? AltLineId;
