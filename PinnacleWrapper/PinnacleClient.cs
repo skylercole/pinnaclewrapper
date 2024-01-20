@@ -219,6 +219,23 @@ namespace PinnacleWrapper
             return GetJsonAsync<GetFixturesResponse>(sb.ToString());
         }
 
+        public Task<GetFixturesSpecialResponse> GetFixturesSpecial(GetFixturesSpecialRequest request)
+        {
+            var sb = new StringBuilder();
+
+            sb.Append($"{request.ApiVersion}/fixtures/special?sportId={request.SportId}");
+
+            sb.Append($"&eventId={request.EventId}");
+
+            if (request.Since > 0)
+                sb.Append($"&since={request.Since}");
+
+            if (request.IsLive)
+                sb.Append($"&IsLive={request.IsLive}");
+
+            return GetJsonAsync<GetFixturesSpecialResponse>(sb.ToString());
+        }
+
         public Task<GetOddsResponse> GetOdds(GetOddsRequest request)
         {
             var sb = new StringBuilder();
@@ -243,7 +260,7 @@ namespace PinnacleWrapper
             return GetJsonAsync<GetOddsResponse>(sb.ToString());
         }
 
-        public Task<GetSpecialOddsResponse> GetSpecialOdds(GetOddsRequest request)
+        public Task<GetSpecialOddsResponse> GetSpecialOdds(GetSpecialOddsRequest request)
         {
             var sb = new StringBuilder();
 
@@ -252,8 +269,9 @@ namespace PinnacleWrapper
             if (request.LeagueIds != null && request.LeagueIds.Any())
                 sb.Append($"&leagueIds={string.Join(",", request.LeagueIds)}");
 
+            sb.Append($"&specialId={request.SpecialId}");
+
             sb.Append($"&oddsFormat={OddsFormat}");
-            sb.Append($"&toCurrencyCode={CurrencyCode}");
 
             return GetJsonAsync<GetSpecialOddsResponse>(sb.ToString());
         }
