@@ -39,7 +39,7 @@ namespace PinnacleWrapper.Data
             ApiVersion = apiVersion;
         }
 
-        public GetOddsRequest(int sportId, List<int> leagueIds,List<int> eventIds, long since, string apiVersion = "v1")
+        public GetOddsRequest(int sportId, List<int> leagueIds, List<int> eventIds, long since, string apiVersion = "v1")
         {
             SportId = sportId;
             LeagueIds = leagueIds;
